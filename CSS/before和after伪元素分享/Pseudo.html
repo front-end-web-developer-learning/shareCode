@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>伪元素分享</title>
+</head>
+<body>
+    <strong>::before和::after是CSS 伪元素，用于向元素内容前后追加内容，也可以给某些选择器设置特殊效果。</strong>
+    <ul>
+        <li>::before&nbsp;&nbsp;&nbsp;&nbsp;在元素之前添加内容。</li>
+        <li>::after&nbsp;&nbsp;&nbsp;&nbsp;在元素之后添加内容。</li>
+    </ul>
+    <h3>优缺点</h3>
+    <ul>
+        <li>优点
+            <ul>
+                <li>减少dom节点数</li>
+                <li>让css帮助解决部分js问题，让问题变得简单</li>
+            </ul>
+        </li>
+        <li>缺点
+            <ul>
+                <li>不利于搜索引擎优化(SEO)</li>
+                <li>无法审查元素，不利于调试</li>
+            </ul>
+        </li>
+    </ul>
+    <h3>如何使用</h3>
+    <pre>
+        选择器::before {
+            content: "前面追加的内容";
+            ...其他样式
+        }
+        选择器::after {
+            content: "后面追加的内容";
+            ...其他样式
+        }
+        备注：在与伪类配合时要放在选择器的最后面，css3之前使用的是单冒号(:)，之后用的是双冒号(::)，将伪类和伪元素区分，增加代码可读性
+    </pre>
+    <h3>使用时需要注意的事项</h3>
+    <ul>
+        <li>最重要的就是必须要有content属性，否则无法生效</li>
+        <li>与选择器间没有空格</li>
+        <li>默认样式为内联样式，需要通过修改display属性，设置需要的显示方式</li>
+    </ul>
+    <h3>常见的使用场景</h3>
+    <ul>
+        <li>元素内容前后追加内容<a href="demo.html">demo1</a></li>
+        <li>清除浮动<a href="demo1.html">demo2</a></li>
+        <li>样式修改(主要是元素前后的特殊效果)<a href="demo2.html">demo3</a></li>
+    </ul>
+    <h3>关于content属性可以设置的值</h3>
+    <ul>
+        <li>设置为空字符串，这时主要是用来进行样式修改，可以当成一个元素来使用，可以设置宽度高度，背景颜色，定位，边框等</li>
+        <li>设置为字符串，这时主要是来追加内容，可以设置字体相关的属性，颜色，大小，加粗等</li>
+        <li>使用函数
+            <ul>
+                <li>attr()，获取修饰的选择器上的自定义属性值，然后给content，可以实现一些动态效果，在前端框架中根据数据来渲染的页面时用到的较少<a href="demo3.html">demo4</a></li>
+                <li>url()，可以嵌入图片；但是相比使用背景图片，设置图片大小，这种方式会显示图片的原始尺寸，无法控制大小，所以实际应用场景很少</li>
+            </ul>
+        </li>
+    </ul>
+</body>
+</html>

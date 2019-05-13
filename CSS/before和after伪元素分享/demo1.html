@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>减少dom节点数</title>
+    <style>
+        /* 父元素样式 */
+        .parent,._parent{
+            border: #007bff solid 1px;
+            padding: 10px;
+            width: 200px;
+        }
+        /* 父元素增加伪元素利用clear:both清除浮动 */
+        .parent::after{
+            content: "";
+            display: block;
+            clear:both;
+        }
+        /* 子元素样式 */
+        .child{
+            float: left;
+            border: 1px solid #007bff;
+            padding: 5px;
+            margin: 0 10px;
+        }
+        /* 清楚浮动元素的样式 */
+        .clear{
+            clear:both;
+        }
+    </style>
+</head>
+<body>
+    <p>在清除浮动的时候，有一种做法是在父元素内部增加新的元素，应用clear:both清除浮动。</p>
+    <pre>
+    style
+        /* 父元素样式 */
+        .parent{
+            border: #007bff solid 1px;
+            padding: 10px;
+            width: 200px;
+        }
+        /* 子元素样式 */
+        .child{
+            float: left;
+            border: 1px solid #007bff;
+            padding: 5px;
+            margin: 0 10px;
+        }
+        /* 清楚浮动元素的样式 */
+        .clear{
+            clear:both;
+        }
+
+    html
+        &lt;div class="parent">
+            &lt;div class="child">child&lt;/div>
+            &lt;div class="child">child&lt;/div>
+            ...
+            &lt;div class="clear">&lt;/div>
+        &lt;/div>
+    </pre>
+    <p>效果展示</p>
+    <div class="_parent">
+        <div class="child">child</div>
+        <div class="child">child</div>
+        <div class="clear"></div>
+    </div>
+    <p>使用伪元素可以减少dom节点数，将新增的元素清除浮动部分放到父元素的伪元素:after</p>
+    <pre>
+    style
+        /* 父元素样式 */
+        .parent{
+            border: #007bff solid 1px;
+            padding: 10px;
+            width: 200px;
+        }
+        /* 父元素增加伪元素利用clear:both清除浮动 */
+        .parent::after{
+            content: "";
+            display: block;
+            clear:both;
+        }
+        /* 子元素样式 */
+        .child{
+            float: left;
+            border: 1px solid #007bff;
+            padding: 5px;
+            margin: 0 10px;
+        }
+
+    html
+        &lt;div class="parent">
+            &lt;div class="child">child&lt;/div>
+            &lt;div class="child">child&lt;/div>
+            ...
+        &lt;/div>
+    </pre>
+    <p>效果展示</p>
+    <div class="parent">
+        <div class="child">child</div>
+        <div class="child">child</div>
+    </div>
+    <p>这两种方式的效果是一样的，使用伪元素的方式会减少dom节点数</p>
+</body>
+</html>
