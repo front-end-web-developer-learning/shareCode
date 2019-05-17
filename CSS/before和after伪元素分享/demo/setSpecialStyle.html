@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>样式修改</title>
+    <style>
+        /* 每个列表项的样式 */
+        .row{
+            position: relative;
+            padding: 5px;
+            border: 1px solid #eeeeee;
+            height: 20px;
+            line-height: 20px;
+        }
+        /* 解决相邻列表项边框加粗问题 */
+        .row +.row{
+            border-top: 0;
+        }
+        /* content为空字符串，设置特殊样式，在元素右侧增加右箭头 */
+        .row::after{
+            content: "";
+            position: absolute;
+            width: 8px;
+            height: 8px;
+            border-top: 1px solid #dddddd;
+            border-right: 1px solid #dddddd;
+            transform: rotate(45deg);
+            right: 15px;
+            top: 10px;
+        }
+    </style>
+</head>
+<body>
+    <p>使用伪元素修改样式，例如数据展示时在每一行的右侧增加右箭头</p>
+    <pre>
+    style
+        /* 每个列表项的样式 */
+        .row{
+            position: relative;
+            padding: 5px;
+            border: 1px solid #eeeeee;
+            height: 20px;
+            line-height: 20px;
+        }
+        /* 解决相邻列表项边框加粗问题 */
+        .row +.row{
+            border-top: 0;
+        }
+        /* content为空字符串，设置特殊样式，在元素右侧增加右箭头 */
+        .row::after{
+            content: "";
+            position: absolute;
+            width: 8px;
+            height: 8px;
+            border-top: 1px solid #dddddd;
+            border-right: 1px solid #dddddd;
+            transform: rotate(45deg);
+            right: 15px;
+            top: 10px;
+        }
+
+    html
+        &lt;div class="row">列表项1&lt;/div>
+        &lt;div class="row">列表项2&lt;/div>
+    </pre>
+    <p>效果展示</p>
+    <div class="row">列表项1</div>
+    <div class="row">列表项2</div>
+</body>
+</html>

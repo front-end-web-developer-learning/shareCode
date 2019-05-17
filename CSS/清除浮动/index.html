@@ -1,0 +1,249 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>清除浮动</title>
+  <style>
+    .showErrDemo .father{
+      background-color: orange;
+      border: 5px solid #000;
+    }
+    .showErrDemo .father .son_1 {
+      float: left;
+      width: 200px;
+      height: 200px;
+      background: red;
+      font-size: 20px;
+      line-height: 200px;
+      text-align: center;
+    }
+    .showErrDemo .father .son_2 {
+      float: left;
+      width: 200px;
+      height: 200px;
+      background: blue;
+      font-size: 20px;
+      line-height: 200px;
+      text-align: center;
+    }
+    .showErrDemo .father .son_3 {
+      float: left;
+      width: 200px;
+      height: 200px;
+      background: green;
+      font-size: 20px;
+      line-height: 200px;
+      text-align: center;
+    }
+    .showErrDemo .mother{
+      height: 400px;
+      border: 5px solid pink;
+    }
+    .showDemo .father{
+      background-color: orange;
+      border: 5px solid #000;
+    }
+    .showDemo .father .son_1 {
+      float: left;
+      width: 200px;
+      height: 200px;
+      background: red;
+      font-size: 20px;
+      line-height: 200px;
+      text-align: center;
+    }
+    .showDemo .father .son_2 {
+      float: left;
+      width: 200px;
+      height: 200px;
+      background: blue;
+      font-size: 20px;
+      line-height: 200px;
+      text-align: center;
+    }
+    .showDemo .father .son_3 {
+      float: left;
+      width: 200px;
+      height: 200px;
+      background: green;
+      font-size: 20px;
+      line-height: 200px;
+      text-align: center;
+    }
+    .showDemo .father::after {
+      content: '';
+      display: block;
+      clear: both;
+    }
+    .showDemo .mother{
+      height: 400px;
+      border: 5px solid pink;
+    }
+    nav ol li {
+      cursor: pointer;
+    }
+    nav ol li:hover {
+      color: aquamarine;
+      transition: 0.5s;
+    }
+    nav .codeFrag {
+      display: none;
+      padding-left: 40px;
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <h1>清除浮动</h1>
+  </header>
+  <section>
+    <h3>需求解读</h3>
+    <ol type="A">
+      <li>本例中father包含三个子元素，而father的高度需要由子元素撑起来，所以高度是变化的（不一定只有三个 可能会有三十个或者更多）</li>
+      <li>子元素要求横向排列</li>
+      <li>布局不能坍塌混乱 father包含子元素在上  mother紧随其后</li>
+    </ol>
+  </section>
+  <section class="showErrDemo">
+    <h3>未清除浮动的效果</h3>
+    <div class="father">
+      我是爸爸
+      <div class="son_1">1</div>
+      <div class="son_2">2</div>
+      <div class="son_3">3</div>
+    </div>
+    <div class="mother">
+      这是需要在 mother 元素里左侧展示的内容
+    </div>
+  </section>
+  <section>
+    <h3>造成布局坍塌的原因</h3>
+    <ol>
+      <li>文档流：浏览器会按照html文档标签编辑顺序去解读元素类型，然后按照Box、Formatting Context规则（后续简单介绍）进行解析渲染进行从左至右，从上至下的布局</li>
+      <li>脱离文档流：而float和position会使得元素脱离文档流，不占用文档流的空间，可以理解为从凡人变为化神期修士，不受到俗世规则束缚，由仙界制度把控</li>
+      <li>son元素脱离了文档流不占用文档空间，father并没有指定尺寸，默认为0，后续同级元素会紧凑布局占用空出来的空间</li>
+      <li>文字和图片等内容展示是由强展示性的，没有特殊设定值的情况下，可以理解为他们千方百计也要把自己展示给你看，这也是为什么浮动起来的几个son元素并没有遮盖住mother的内容</li>
+    </ol>
+  </section>
+  <section>
+    <h3>Box、Formatting Context规则</h3>
+    <ol type="A">
+      <li>Box 是 CSS 布局的对象和基本单位，直观点来说，就是一个页面是由很多个 Box 组成的。元素的类型和 display 属性，决定了这个 Box 的类型。 不同类型的 Box， 会参与不同的 Formatting Context（一个决定如何渲染文档的容器）</li>
+      <li>Formatting context 是 W3C CSS2.1 规范中的一个概念。它是页面中的一块渲染区域，并且有一套渲染规则，它决定了其子元素将如何定位，以及和其他元素的关系和相互作用。最常见的 Formatting context 有 Block fomatting context (简称BFC)和 Inline formatting context (简称IFC)。</li>
+      <li>
+          Block fomatting context (主介)
+          <ol type="i">
+            <li>内部的块级元素会在垂直方向，一个接一个地放置</li>
+            <li>块级元素垂直方向的距离由margin决定。属于同一个BFC的两个相邻的块级元素会发生margin合并，不属于同一个BFC的两个相邻的块级元素不会发生margin合并</li>
+            <li>每个元素的margin box的左边，与包含border box的左边相接触（对于从左往右的格式化，否则相反）。即使存在浮动也是如此</li>
+            <li>BFC的区域不会与float box重叠</li>
+            <li>BFC就是页面上的一个隔离的独立容器，容器里面的子元素不会影响到外面的元素；外面的元素也不会影响到容器里面的子元素</li>
+            <li>计算BFC的高度时，浮动元素也参与计算</li>
+          </ol>
+      </li>
+      <li>
+          创建一个BFC  一个BFC可以被显式触发，只需满足以下条件之一
+          <ol type="i">
+            <li>float的值不为none；（float会默认把元素display block）</li>
+            <li>overflow的值不为visible</li>
+            <li>position的值为fixed / absolute</li>
+            <li>display的值为table-cell / table-caption / inline-block / flex / inline-flex</li>
+            <li>根元素 body</li>
+          </ol>
+      </li>
+    </ol>
+  </section>
+  <nav>
+    <h3>主要介绍的三种清除浮动的方式</h3>
+    <ol type="A">
+      <li key = '1'>增加空标签配合clearboth属性</li>
+      <li key = '2'>利用BFC规则原理</li>
+      <li key = '3'>利用伪类配合clearboth属性</li>
+    </ol>
+    <div class="codeFrag">
+      <h5>style</h5>
+      <code>
+        #father {
+          overflow: hidden;
+          // 或者
+          overflow: auto;
+        } 
+      </code>
+    </div>
+  </nav>
+  <section class="showDemo">
+    <h3>清除浮动后的效果</h3>
+    <div class="father">
+        我是爸爸
+        <div class="son_1">1</div>
+        <div class="son_2">2</div>
+        <div class="son_3">3</div>
+    </div>
+    <div class="mother">
+      这是需要在 mother 元素里左侧展示的内容
+    </div>
+  </section>
+  <script>
+    var codeFragEl = document.getElementsByClassName('codeFrag')[0]
+    var navEl = document.getElementsByTagName('nav')[0]
+    var olEl = navEl.getElementsByTagName('ol')[0]
+    let str1 = `
+      .son_clear {
+        clear: both;
+      }
+      
+      <div class="father">
+        我是爸爸
+        <div class="son_1">1</div>
+        <div class="son_2">2</div>
+        <div class="son_3">3</div>
+        <div class="son_clear"></div>
+      </div>
+      <div class="mother">
+        这是需要在 mother 元素里左侧展示的内容
+      </div>
+
+      原理：利用子元素尾部空标签添加css clear属性
+      优点：容易理解 不容易出现兼容问题
+      缺点：若清除浮动点比较多，就需要写很多空标签，不推荐
+    `
+    let str2 = `
+      #father {
+        overflow: hidden;
+        // 或者
+        overflow: auto;
+      } 
+
+      原理：利用BFC规则 相当于设置父级高度
+      优点：代码少 不容易出现兼容问题
+      缺点：不能配合position使用 超出的会被隐藏或者 宽高过大会有滚动条 需要深刻理解BFC
+    `
+    let str3 = `
+      #father::after {
+        content: '';
+        clear: both;
+        display: block;
+      }
+
+      原理：用伪类来做方式一的事情 创造空元素 clear both
+      优点：弥补了方式一里会制造空元素的弊端 （推荐使用）
+      缺点：可能在兼容ie上 需要配合zoom属性使用
+    `
+    olEl.addEventListener('click', (e) => {
+      let key = e.target.getAttribute('key')
+      switch(key) {
+        case '1': codeFragEl.innerText = str1;
+        break;
+        case '2': codeFragEl.innerText = str2;
+        break;
+        case '3': codeFragEl.innerText = str3;
+        break;
+        default: codeFragEl.innerText = str1;
+      }
+      codeFragEl.style.display = 'block'
+    })
+  </script>
+</body>
+</html>
