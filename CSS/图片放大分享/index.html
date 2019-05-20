@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>图片的缩放分享</title>
+    <style>
+        .row{
+            display: flex;
+            border: 1px solid #007bff;
+        }
+        .row +.row{
+            border-top: 0;
+        }
+        .col{
+            flex-grow: 1;
+            text-align: left;
+            border-left: 1px solid #007bff;
+            min-height: 20px;
+            flex-basis: 150px;
+            padding: 5px;
+        }
+        .col:first-child{
+            text-align: center;
+            border-left-color: transparent;
+            width: 120px;
+            flex-grow: 0;
+        }
+        .mt-1{
+            margin-top: 10px;
+        }
+    </style>
+</head>
+<body>
+    <strong>图片的缩放分享</strong>
+    <h3>要求：鼠标悬浮，图片放大</h3>
+    <h3>css实现方式</h3>
+    <ul>
+        <li>影响布局
+            <ul>
+                <li>使用zoom属性(百分比缩放)，但是存在兼容性问题，示例见<a href="./demo/zoom.html">demo1</a></li>
+                <li>在确定尺寸时，直接修改尺寸(非百分比缩放，直接设置宽高)，示例见<a href="./demo/modifySize.html">demo2</a></li>
+            </ul>
+        </li>
+        <li>不影响布局
+            <ul>
+                <li>使用css3的scale(百分比缩放)，示例见<a href="./demo/scale.html">demo3</a></li>
+            </ul>
+        </li>
+    </ul>
+    <h3>实现方式的对比</h3>
+    <div class="row">
+        <div class="col">实现方式</div>
+        <div class="col">浏览器兼容性</div>
+        <div class="col">是否影响布局</div>
+        <div class="col">是否等比例缩放</div>
+        <div class="col">缩放中心</div>
+    </div>
+    <div class="row">
+        <div class="col">使用zoom</div>
+        <div class="col">Firefox和部分低版本Opera不支持</div>
+        <div class="col">影响</div>
+        <div class="col">等比缩放</div>
+        <div class="col">左上角，可以调整对齐方式变相调整缩放中心</div>
+    </div>
+    <div class="row">
+        <div class="col">修改图片尺寸</div>
+        <div class="col">兼容性好，但是很多时候不知道图片尺寸，用到的较少</div>
+        <div class="col">影响</div>
+        <div class="col">非等比缩放</div>
+        <div class="col">左上角，可以调整对齐方式变相调整缩放中心</div>
+    </div>
+    <div class="row">
+        <div class="col">使用scale</div>
+        <div class="col">当前浏览器兼容性好，低版本ie不支持，不过需要添加前缀</div>
+        <div class="col">不影响</div>
+        <div class="col">根据参数设置x轴和y轴缩放比例</div>
+        <div class="col">默认是图片中心，可以通过修改transform-origin，调整缩放中心</div>
+    </div>
+    <div class="mt-1">
+        <strong>
+            相比而言，使用scale
+        </strong>
+        <ul>
+            <li>兼容性较好，而且不影响布局</li>
+            <li>可以不用事先知道图片的尺寸，缩放比例、缩放中心灵活把控</li>
+            <li>zoom和修改尺寸都会导致整个页面布局的变动，重新渲染，scale只是在原来的元素上重绘，性能上会好些</li>
+        </ul>
+    </div>
+</body>
+</html>

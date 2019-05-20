@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>使用scale实现缩放</title>
+    <style>
+        /* 图片外部容器样式 */
+        .img-contaner{
+            border: 1px solid #007bff;
+            padding: 10px 50px;
+        }
+        .img-contaner img{
+            /* 去除图片下的空白 */
+            vertical-align: middle;
+        }
+        /* 鼠标悬浮图片上时，使用scale，图片放大 */
+        .img-contaner img:hover{
+            transform: scale(1.2);
+            -ms-transform: scale(1.2); 	/* IE 9 */
+            -moz-transform: scale(1.2); 	/* Firefox */
+            -webkit-transform: scale(1.2); /* Safari 和 Chrome */
+            -o-transform: scale(1.2); 	/* Opera */
+        }
+    </style>
+</head>
+<body>
+    <h3>使用scale实现缩放，不会影响布局，默认以图片的中心缩放</h3>
+    <h3>使用scale需要注意的事项</h3>
+    <ul>
+        <li>为了适配不同的浏览器，需要添加前缀</li>
+        <li>scale，当只有一个数值时，按这个数值等比例缩放；当有两个参数时，依次在x轴和y轴，按数值的比例缩放</li>
+        <li>默认缩放的中心时图片的中心，可以通过修改transform-origin属性来修改</li>
+    </ul>
+    <p>部分代码</p>
+    <pre>
+        style
+            /* 图片外部容器样式 */
+            .img-contaner{
+                border: 1px solid #007bff;
+                padding: 10px 50px;
+            }
+            .img-contaner img{
+                /* 去除图片下的空白 */
+                vertical-align: middle;
+            }
+            /* 鼠标悬浮图片上时，使用scale，图片放大 */
+            .img-contaner img:hover{
+                transform: scale(1.2);
+                -ms-transform: scale(1.2); 	/* IE 9 */
+                -moz-transform: scale(1.2); 	/* Firefox */
+                -webkit-transform: scale(1.2); /* Safari 和 Chrome */
+                -o-transform: scale(1.2); 	/* Opera */
+            }
+
+        html
+            &lt;div class="img-contaner">
+                &lt;img src="./imgs/1.jpg" alt="">
+            &lt;/div>
+    </pre>
+    <p>效果展示</p>
+    <div class="img-contaner">
+        <img src="../imgs/1.jpg" alt="">
+    </div>
+    <h3>通过设置transform-origin来设置缩放中心注意事项</h3>
+    <ul>
+        <li>transform-origin可以设置3个值以确定中心的位置，分别是x轴、y轴、z轴的位置，当只设置一个数值时，x轴和y轴都是这个数值，默认是“50% 50% 0”</li>
+        <li>x轴可以设置的值：left center right 百分比 具体带单位的数值</li>
+        <li>y轴可以设置的值：top center(不是middle) bottom 百分比 具体带单位的数值</li>
+        <li>z轴：具体带单位的数值，2D的效果中用不到</li>
+    </ul>
+</body>
+</html>

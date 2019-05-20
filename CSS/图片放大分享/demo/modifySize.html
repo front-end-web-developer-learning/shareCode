@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>直接改变图片尺寸实现缩放</title>
+    <style>
+        /* 图片外部容器样式 */
+        .img-contaner{
+            border: 1px solid #007bff;
+            padding: 10px;
+            text-align: center;
+        }
+        /* 图片样式，已知图片大小 */
+        .img-contaner img{
+            width: 240px;
+            height: 150px;
+            /* 去除图片下的空白 */
+            vertical-align: middle;
+        }
+        /* 鼠标悬浮图片上时，修改图片尺寸，图片放大 */
+        .img-contaner img:hover{
+            width: 360px;
+            height: 225px;
+        }
+    </style>
+</head>
+<body>
+    <h3>在已知图片尺寸时，也可以直接改变图片尺寸实现缩放</h3>
+    <h3>修改尺寸需要注意的事项</h3>
+    <ul>
+        <li>可以需改成自己想要的大小，但是如果宽高不是等比例的话，图片就会变形</li>
+        <li>为了图片不变形，最好按比例缩放，同时不要给图片添加max-width或者max-height属性，否则缩放的效果会收到限制，与预期的不一致</li>
+    </ul>
+    <p>部分代码</p>
+    <pre>
+        style
+            /* 图片外部容器样式 */
+            .img-contaner{
+                border: 1px solid #007bff;
+                padding: 10px;
+                text-align: center;
+            }
+            /* 图片样式，已知图片大小 */
+            .img-contaner img{
+                width: 240px;
+                height: 150px;
+                /* 去除图片下的空白 */
+                vertical-align: middle;
+            }
+            /* 鼠标悬浮图片上时，修改图片尺寸，图片放大 */
+            .img-contaner img:hover{
+                width: 360px;
+                height: 225px;
+            }
+
+        html
+            &lt;div class="img-contaner">
+                &lt;img src="./imgs/1.jpg" alt="">
+            &lt;/div>
+    </pre>
+    <p>效果展示</p>
+    <div class="img-contaner"><img src="../imgs/1.jpg" alt=""></div>
+</body>
+</html>

@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>使用zoom缩放图片</title>
+    <style>
+        /* 图片外部容器样式 */
+        .img-contaner{
+            border: 1px solid #007bff;
+            padding: 10px;
+            /* 使图片居中，变相改变缩放中心 */
+            text-align: center;
+        }
+        .img-contaner img{
+            /* 去除图片下的空白 */
+            vertical-align: middle;
+        }
+        /* 鼠标悬浮图片上时，图片放大 */
+        .img-contaner img:hover{
+            /* zoom: 1.2; */
+            zoom: 120%;
+        }
+    </style>
+</head>
+<body>
+    <h3>使用zoom属性实现缩放，存在兼容性问题，Firefox和部分低版本Opera不支持</h3>
+    <h3>使用时需要注意的事项</h3>
+    <ul>
+        <li>当zoom的值设置为1时，原比例展示；大于1时放大，小于1时缩小；可以是1.2这种数字形式，也可以是120%这种百分比形式</li>
+        <li>当使用zoom时，不要给图片添加max-width或者max-height属性，否则缩放的效果会收到限制，与预期的不一致</li>
+    </ul>
+    <p>部分代码</p>
+    <pre>
+        style
+            /* 图片外部容器样式 */
+            .img-contaner{
+                border: 1px solid #007bff;
+                padding: 10px;
+                /* 使图片居中，变相改变缩放中心 */
+                text-align: center;
+            }
+            .img-contaner img{
+                /* 去除图片下的空白 */
+                vertical-align: middle;
+            }
+            /* 鼠标悬浮图片上时，图片放大 */
+            .img-contaner img:hover{
+                /* zoom: 1.2; */
+                zoom: 120%;
+            }
+
+        html
+            &lt;div class="img-contaner">
+                &lt;img src="./imgs/1.jpg" alt="">
+            &lt;/div>
+    </pre>
+    <p>效果展示</p>
+    <div class="img-contaner">
+        <img src="../imgs/1.jpg" alt="">
+    </div>
+</body>
+</html>
