@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Document-1</title>
+</head>
+<link rel="stylesheet" href="./style.css">
+<body>
+ <h2>纯CSS实现边上带小三角的div提示框</h2>
+  <h3>1.带边框的提示框</h3>
+   <pre>
+     /*
+      * 1. 首先画一个普通的 div 框
+      * 2. 再在适当的位置放一个小三角形
+      * 3. 再在三角形的内部再放置一个小三角(border宽度一样)，进行定位，形成边框，并遮住多余的边
+      */
+
+      &lt;div class="tipComponent">
+        &lt;div class="rectangle">
+            css实现边上带小三角的提示框
+        &lt;/div>
+        &lt;div class="triangle">
+            &lt;div class="triangle_inner">&lt;/div>
+        &lt;/div>
+      &lt;/div>
+
+      .rectangle{
+        width: 400px;
+        height: 100px;
+        border: 2px solid black;
+        background: red;
+      }
+      .triangle{
+        width: 0px;
+        border:20px solid transparent;
+        border-top-color: #000;
+        left: 195px;
+        position: absolute;
+      }
+      .triangle_inner{
+        width: 0px;
+        border:20px solid transparent;
+        border-top-color: red;
+        left: -20px;
+        top:-23px;
+        position: absolute;
+      }
+
+   </pre>
+    <div class="tipComponent">
+      <div class="rectangle">
+          css实现边上带小三角的提示框
+      </div>
+      <div class="triangle">
+          <div class="triangle_inner"></div>
+      </div>
+    </div>
+
+    <h3  style="margin-top: 50px">2.不带边框的提示框</h3>
+    <pre>
+      &lt;div class="dialog">hello world!&lt;/div>
+
+      .dialog {
+        width: 250px;
+        height: 25px;
+        background: #6a6;
+        line-height: 25px;
+        color: #cccccc;
+        padding: 10px;
+        border-radius: 6px;
+        position: relative;
+      }
+      .dialog::before {
+        content: "";
+        width: 0;
+        height: 0;
+        border-top: 10px solid transparent;
+        border-right: 10px solid #6a6;
+        border-bottom: 10px solid transparent;
+        border-left: 0px solid #fff;
+        position: absolute;
+        left: -10px;
+        top: 14px;
+      }
+      
+    </pre>
+    <div class="dialog">hello world!</div>
+
+</body>
+</html>

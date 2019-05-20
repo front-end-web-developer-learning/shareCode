@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Document-1</title>
+</head>
+<link rel="stylesheet" href="./style.css">
+<body>
+  <header>
+    <h2>解析border，轻松实现CSS画三角形</h2>
+  </header>
+      
+  <article>
+    <h3>关于border</h3>
+
+<!----------------------------------初始状态------------------------------------------>
+    <p>我们经常使用的 border 最初状态如下所示：</p>
+    <pre>
+      &lt;div class="border">&lt;/div>
+
+      .border{
+        height: 50px;
+        border: 10px solid #000
+      }
+    </pre>
+    <!-- 例子 -->
+    <div class="border"></div>
+   
+    <br>
+<!-------------------------------置了其他边的边框但是显示为透明时-------------------->
+    <p>but... 当我设置了其他边的边框但是显示为透明时</p>
+    <pre>
+        &lt;div class="border-aside-transparent">&lt;/div>
+
+        .border-aside-transparent{
+          height: 50px;
+          border: 10px solid transparent; 
+          border-top: 6px solid #000;
+          background:#ccc;
+        }
+    </pre>
+    <!-- 例子 -->
+    <div class="border-aside-transparent"></div>
+
+
+    <div style="margin-top: 10px;color:brown">
+      上边框变成梯形了！这是怎么回事？
+    </div>
+
+    <!-----------------详看border四条边---------------------------->
+    <p>在未设置left和right的时候便不会有此问题，top妥妥的矩形，若都设置了只能相交部分平分一半了，如下所示：</p>
+    <pre>
+        &lt;div class="border-aside-all">&lt;/div>
+        .border-aside-all{
+          height: 50px;
+          border-top: 10px solid rgb(238, 96, 40);
+          border-right: 10px solid rgb(57, 69, 238);
+          border-bottom: 10px solid plum;
+          border-left: 10px solid green;
+          background:#ccc;
+        }
+    </pre>
+    <!-- 例子 -->
+    <div class="border-aside-all"></div>
+
+   <br>
+
+    四边border的位置，很明显了对不对？接下来就可以画三角形啦啦啦！！！
+
+    <!-------------------------css画三角形------------------------->
+    <h3>CSS画三角形</h3>
+    <pre>
+      &lt;div class="border-square">&lt;/div>
+      .border-square{
+        width: 0px;
+        border: 20px solid transparent; 
+        border-top-color:  #000;
+        &lt;!-- background: #ccc;  -->
+      }
+    </pre>
+    <div class="border-square"></div>
+
+  </article>
+</body>
+</html>

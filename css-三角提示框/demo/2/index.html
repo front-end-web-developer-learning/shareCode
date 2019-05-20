@@ -1,0 +1,207 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Document-1</title>
+</head>
+<link rel="stylesheet" href="./style.css">
+<body>
+   <h3>CSS实现各种形态的三角形</h3>
+
+    <ol>
+      <li>
+        实心三角形
+        <ul>
+          <li>
+            等腰三角形
+            <pre>
+              /*
+               * 1. 将div的宽度设为0，高度默认就是0
+               * 2. 统一设置border，并全部透明显示
+               * 3. 根据所需三角形旋转的情况单独设置任一边的颜色，如下：
+               */
+
+               &lt;div class="equilateral-triangle">&lt;/div>
+
+                .equilateral-triangle{
+                  width: 0;
+                  border:20px solid transparent;
+                  border-bottom-color: blueviolet;  //尖角朝上（如本例所示）
+                  border-top-color: brown;  //尖角朝下
+                  border-left-color: brown;  //尖角朝右
+                  border-right-color: brown;  //尖角朝左
+                }
+            </pre>
+            <div class="equilateral-triangle"></div>
+          </li>
+          <li>
+            等腰直角三角形
+            <pre>
+              /*
+               * 1. 将div的宽度设为0，高度默认就是0
+               * 2. 统一设置border，并全部透明显示
+               * 3. 只要将任意两个相邻边的颜色设置出来就好了( 正方形切一半肯定是等腰直角三角形 )
+               */
+
+               &lt;div class="isosceles-right-triangle">&lt;/div>
+
+               .isosceles-right-triangle{
+                  width: 0;
+                  border: 20px solid transparent;
+                  border-left-color: black;
+                  border-bottom-color:#000;
+                }
+            </pre>
+            <div class="isosceles-right-triangle"></div>
+          </li>
+          <li>
+            等边三角形
+            <pre>
+              /*
+               *前两个条件和之前一样，主要是单独设置的border宽度与统一的不一样就行，大小根据需求而定
+               */
+
+               &lt;div class="triangle">&lt;/div>
+
+                .triangle{
+                  width: 0;
+                  border: 20px solid transparent;
+                  border-bottom: 50px solid #000;
+                }
+            </pre>
+            <div class="triangle"></div>
+          </li>
+        </ul>
+      </li>
+      <li>
+        有边框的三角形
+        <pre>
+          /*
+           * 思路：将2个三角形叠加起来，外层的三角形稍微大一些。
+           */
+
+           &lt;div class="outside-normal">
+              &lt;div class="inside-normal">&lt;/div>
+           &lt;/div>
+
+           .outside-normal{
+            width: 0;
+            border:50px solid transparent;
+            border-bottom-color: #000;
+            position: relative;
+            background: #ccc;
+          }
+          .inside-normal{
+            width: 0;
+            border:40px solid transparent;
+            border-bottom-color: red;
+            position: absolute;
+            background: green;
+          }
+        </pre>
+        <div class="outside-normal" style="margin-bottom: 50px">
+          <div class="inside-normal"></div>
+        </div>
+        <pre>
+          /*
+           * 思路：将上面图形进行设置定位
+           */
+
+           &lt;div class="outside-over">
+            &lt;div class="inside-over">&lt;/div>
+           &lt;/div>
+
+           .outside-over{
+            width: 0px;
+            border:100px solid transparent;
+            border-bottom-color: #000;
+            position: relative;
+          }
+          .inside-over{
+            width: 0px;
+            border: 90px solid transparent;
+            border-bottom-color: #fc0;
+            position: absolute;
+            top: -85px;
+            left: -90px;
+          }
+        </pre>
+        <div class="outside-over">
+          <div class="inside-over"></div>
+        </div>
+      </li>
+      <li>
+        空心三角形
+        <pre>
+          /*
+           * 原理：两个三角形重叠，下面的边重合
+           */
+
+           &lt;div class="empty">
+            &lt;div class="empty-inside">&lt;/div>
+           &lt;/div>
+
+           .empty{
+            width: 0;
+            border-left: 30px solid transparent;
+            border-right: 30px solid transparent;
+            border-bottom: 30px solid #333;
+            position: relative;
+            background: #ccc;
+           }
+          
+          .empty-inside{
+            width: 0;
+            border-left: 28px solid transparent;
+            border-right: 28px solid transparent;
+            border-bottom: 28px solid #F0981C;
+            position: absolute;
+            left: -28px;
+            top: 2px;
+          }
+        </pre>
+        <div class="empty" style="margin-bottom: 10px">
+          <div class="empty-inside"></div>
+        </div>
+
+        如果只想要箭头？
+
+        <pre style="margin-top:10px">
+          /*
+           * 原理：将里面的形成的三角形 border-color 设置成想要的背景颜色即可
+           */
+
+           &lt;div class="empty-arrow">
+            &lt;div class="empty-arrow-inside">&lt;/div>
+           &lt;/div>
+
+           .empty-arrow{
+            width: 0;
+            border-left: 30px solid transparent;
+            border-right: 30px solid transparent;
+            border-bottom: 30px solid #333;
+            position: relative;
+            /* background: #ccc; */
+           }
+          
+          .empty-arrow-inside{
+            width: 0;
+            border-left: 28px solid transparent;
+            border-right: 28px solid transparent;
+            border-bottom: 28px solid #fff;
+            position: absolute;
+            left: -28px;
+            top: 2px;
+          }
+        </pre>
+        <div class="empty-arrow">
+          <div class="empty-arrow-inside"></div>
+        </div>
+      </li>
+    </ol>
+    
+  </article>
+</body>
+</html>

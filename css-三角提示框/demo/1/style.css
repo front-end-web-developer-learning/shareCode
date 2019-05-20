@@ -1,0 +1,31 @@
+/* 普通边框 */
+.border{
+  height: 50px;
+  border: 10px solid #000 
+}
+
+/* 设置了其他边的边框但是显示为透明时 */
+.border-aside-transparent{
+  height: 50px;
+  border: 10px solid transparent; 
+  border-top: 6px solid #000;
+  background:#ccc;
+}
+
+/* border 的四条边 */
+.border-aside-all{
+  height: 50px;
+  border-top: 10px solid rgb(238, 96, 40);
+  border-right: 10px solid rgb(57, 69, 238);
+  border-bottom: 10px solid plum;
+  border-left: 10px solid green;
+  background:#ccc;
+}
+
+/* CSS画三角形 */
+.border-square{
+  width: 0px;
+  border: 20px solid transparent; 
+  border-top-color:  #000;
+  background: #ccc;
+}

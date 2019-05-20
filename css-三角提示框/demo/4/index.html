@@ -1,0 +1,199 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Document-1</title>
+</head>
+<link rel="stylesheet" href="./style.css">
+<body>
+  <h3>CSS画圆形、蛋形、心形、菱形、五角星、八卦、三角、圆形、对话框、平行四边形...</h3>
+
+    <ol>
+      <li>
+        圆形
+
+        <pre>
+          &lt;div class="circle">&lt;/div>
+
+          .circle {
+            width: 100px;
+            height: 100px;
+            border: 2px solid #000;
+            border-radius: 50%;
+            background: coral;
+          }
+        </pre>
+
+        <div class="circle"></div>
+      </li>
+      <li>
+        蛋形
+        
+        <pre>
+          &lt;div class="egg">&lt;/div>
+
+          .egg {
+            width: 126px;
+            height: 180px;
+            background-color: #eee;
+            box-shadow: 0px 2px 5px #ccc;
+            display: block;
+            border-radius: 50% 50% 50% 50%/60% 60% 40% 40%;
+          }
+        </pre>
+        <div class="egg"> </div>
+      </li>
+      <li>
+        心形
+
+        <pre>
+          &lt;div class="heart">&lt;/div>
+
+          .heart {
+            width: 100px;
+            height: 90px;
+            position: relative;
+          }
+          .heart:before,
+          .heart:after {
+            width: 50px;
+            height: 80px;
+            left: 50px;
+            top: 0;
+            background-color: coral;
+            position: absolute;
+            content: "";
+            border-radius: 50px 50px 0 0;
+            transform: rotate(-45deg);
+            transform-origin: 0 100%;
+          }
+          .heart:after {
+            left: 0;
+            transform: rotate(45deg);
+            transform-origin: 100% 100%;
+          }
+          
+        </pre>
+        <div class="heart"></div>
+      </li>
+      <li>
+        菱形
+
+        <pre>
+          &lt;div class="diamod">&lt;/div>
+
+          .diamod {
+            width: 150px;
+            height: 150px;
+            background: #6a6;
+            transform: rotate(45deg);
+            margin: 50px;
+          }
+        </pre>
+
+        <div class="diamod"></div>
+      </li>
+      <li>
+        五角星
+
+        <pre>
+          &lt;div class="star">&lt;/div>
+
+          .star {
+            width: 0;
+            height: 0;
+            margin: 50px 0;
+            position: relative;
+            display: block;
+            border-left: 100px solid transparent;
+            border-right: 100px solid transparent;
+            border-bottom: 70px solid red;
+            transform: rotate(-35deg);
+          }
+          .star::before {
+            width: 0;
+            height: 0;
+            border-left: 30px solid transparent;
+            border-right: 30px solid transparent;
+            border-bottom: 80px solid red;
+            position: absolute;
+            top: -45px;
+            left: -65px;
+            display: block;
+            content: "";
+            transform: rotate(-35deg);
+          }
+          .star::after {
+            width: 0;
+            height: 0;
+            display: block;
+            position: absolute;
+            color: red;
+            top: 3px;
+            left: -105px;
+            border-left: 100px solid transparent;
+            border-right: 100px solid transparent;
+            border-bottom: 70px solid red;
+            content: "";
+            transform: rotate(-70deg);
+          }
+          
+         
+        </pre>
+
+        <div class="star"></div>
+      </li>
+      <li>
+        八卦
+
+        <pre>
+          &lt;div class="yy">&lt;/div>
+          .yy {
+            width: 96px;
+            box-sizing: content-box;
+            height: 48px;
+            background: #fff;
+            border-color: #000;
+            border-style: solid;
+            border-width: 2px 2px 50px 2px;
+            border-radius: 100%;
+            position: relative;
+          }
+          .yy::before {
+            content: "";
+            width: 12px;
+            height: 12px;
+            top: 50%;
+            left: 0;
+            position: absolute;
+            background-color: #fff;
+            border: 18px solid #000;
+            border-radius: 100%;
+          }
+          .yy::after {
+            content: "";
+            width: 12px;
+            height: 12px;
+            top: 50%;
+            left: 50%;
+            position: absolute;
+            background-color: #000;
+            border: 18px solid #fff;
+            border-radius: 100%;
+          }
+          
+          
+        </pre>
+
+        <div class="yy"></div>
+      </li>
+      <li>
+        感兴趣可参考：<a href="https://css-tricks.com/the-shapes-of-css/?utm_campaign=haruki&utm_content=note&utm_medium=reader_share&utm_source=weixin">The Shapes of CSS</a>
+      </li>
+    </ol>
+    
+ 
+</body>
+</html>
